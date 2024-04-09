@@ -3,7 +3,7 @@
 @section('title', 'myMeds - Login')
 
 @section('content')
-<div class="container" style="font-size: 1.75rem">
+<div class="container" style="font-size: 1.75rem; margin-top: 5rem">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="background: rgba(19, 35, 47, 0.9);">
