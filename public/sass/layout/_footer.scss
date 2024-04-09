@@ -1,0 +1,103 @@
+//Estilos para el footer
+.footer {
+  align-items: center;
+  padding-top: 1rem;
+  background-color: #fff;
+  gap: 2rem;
+
+  //Estilos para el contenedor del mail
+  &__mail {
+    align-items: center;
+    gap: 1.1rem;
+
+    img {
+      width: 8rem;
+    }
+
+    p {
+      color: $color-texto;
+      text-align: center;
+      align-self: center;
+      font: 600 2.5rem nuevaLetra;
+    }
+  }
+
+  //Estilos para el contenedor con las opciones
+  &__opciones {
+    margin-top: 4rem;
+    align-items: center;
+    gap: 10rem;
+    justify-content: space-between;
+    padding: 0rem 2rem;
+
+    @include mobile {
+      gap: 3rem;
+    }
+
+    //Estilos para cada columna
+    .footer__columna-1,
+    .footer__columna-2,
+    .footer__columna-3 {
+      gap: 3rem;
+    }
+
+    //Estilos para cada opcion
+    .footer__opcion {
+      color: $color-texto;
+      font: 600 2rem nuevaLetra;
+      border-left: 0.2rem solid rgba(111, 208, 132, 1);
+      padding-left: 1rem;
+      background: linear-gradient(to right, rgba(111, 208, 132, 1) 50%, white 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+      transition: all .5s ease-out;
+
+      &:hover {
+        background-position: left bottom;
+      }
+    }
+  }
+
+  //Estilos para el contenedor de las redes sociales
+  &__redes {
+    align-items: center;
+    margin-top: 5rem;
+    gap: 6rem;
+
+    //Estilo para el texto de redes sociales
+    .footer__redes-sociales {
+      color: $color-texto;
+      text-align: center;
+      align-self: center;
+      width: 30.3rem;
+      font: 700 2.5rem nuevaLetra;
+    }
+
+    //Estilo para los iconos de las redes sociales
+    .footer__iconos-redes {
+      list-style: none;
+      justify-content: space-between;
+      gap: 2rem;
+
+      .footer__icono {
+        transition: all 0.5s ease;
+
+        &:hover {
+          transform: translateY(-1.5rem);
+        }
+      }
+
+      img {
+        width: 5rem;
+      }
+    }
+  }
+
+  //Estilo para el texto de los derechos
+  &__derechos {
+    color: $color-texto;
+    text-align: center;
+    margin-top: 2.5rem;
+    font: 600 2.5rem nuevaLetra;
+  }
+}

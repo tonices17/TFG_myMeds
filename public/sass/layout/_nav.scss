@@ -1,0 +1,113 @@
+//Estilos para mi barra de navegación
+.nav {
+  // Estilos para los enlaces dentro de la barra de navegación
+  a {
+    text-decoration: none;
+    color: $color-texto-enlace;
+  }
+
+  // Contenedor principal de la barra de navegación
+  &__contenedor {
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 1024px;
+
+    @include mobile {
+      padding: 0rem;
+    }
+  }
+
+  // Estilos para el logo dentro de la barra de navegación
+  &__logo {
+    color: #ededea;
+    text-align: left;
+    text-shadow: 0 0.4rem 0.4rem $color-sombra;
+    flex-grow: 1;
+    flex-basis: auto;
+    font: 400 5rem fuentePagina;
+
+    // Estilos para la imagen dentro del logo
+    img {
+      aspect-ratio: 1;
+      object-fit: contain;
+      object-position: center;
+      width: 6rem;
+      overflow: hidden;
+      align-self: stretch;
+      max-width: 100%;
+      animation: rotate 2s ease;
+
+      @include desktop-small {
+        padding-top: 2rem;
+      }
+    }
+  }
+
+  // Estilos para la lista de elementos de navegación
+  &__lista {
+    align-items: center;
+    justify-content: space-between;
+    gap: 6rem;
+
+    @include mobile {
+      display: none;
+    }
+
+    // Estilos para cada elemento de la lista de navegación
+    &-item {
+      list-style: none;
+      text-align: center;
+      font: 600 2rem nuevaLetra;
+      transition: all 0.5s;
+      position: relative;
+      padding: 1rem 0rem;
+
+      // Estilos para las líneas de efecto hover
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: $color-texto-enlace-hover;
+        transform: scaleX(0);
+        transition: all 0.6s ease;
+      }
+
+      &::before {
+        top: 0;
+        left: 0;
+        transform-origin: left;
+      }
+
+      &::after {
+        bottom: 0;
+        left: 0;
+        transform-origin: right;
+      }
+
+      // Efecto hover para las líneas
+      &:hover::before,
+      &:hover::after {
+        transform: scaleX(1);
+      }
+
+      img {
+        width: 5rem;
+      }
+    }
+  }
+
+  // Estilos para el menú en dispositivos móviles
+  &__menu {
+    display: none;
+
+    // Mostrar el menú en dispositivos móviles y alinear correctamente
+    @include mobile {
+      display: block;
+      align-self: center;
+      margin-right: 1rem;
+    }
+  }
+}

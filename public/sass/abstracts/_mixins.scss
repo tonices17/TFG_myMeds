@@ -1,0 +1,30 @@
+//Mixin para el hover en botones.
+@mixin hover-botones {
+    transform: translateY(-1rem);
+    box-shadow: 0 0.7rem 0.7rem 0 rgba(0, 0, 0, 0.75);
+}
+
+//Mixin para media-query
+@mixin mobile-s {
+    @media (max-width: 426px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 600px) {
+        @content;
+    }
+}
+
+@mixin desktop-small {
+    @media (max-width: 1140px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (max-width: 1500px) {
+        @content;
+    }
+}

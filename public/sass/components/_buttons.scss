@@ -1,0 +1,55 @@
+//Botón base
+.btn {
+    display: inline-block;
+    padding: 1.5rem 2.3rem;
+    font-size: 1.8rem;
+    font-family: $fuente-titulo;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: 0 0.4rem 0.4rem $color-sombra;
+    transition: all 0.5s;
+
+    //Botón principal
+    &--primary {
+        color: $color-texto-enlace;
+        background-color: $color-secundario;
+
+        &:hover {
+            @include hover-botones;
+        }
+    }
+
+    //Botón secundario
+    &--secondary {
+        color: $color-texto;
+        background-color: #fff;
+
+        &:hover {
+            @include hover-botones;
+        }
+    }
+
+    //Botón formulario
+    &--form {
+        border: 0;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 15px 0;
+        font-size: 2rem;
+        background: $color-principal;
+        color: $blanco;
+        transition: all .5s ease;
+        -webkit-appearance: none;
+        display: block;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+            background: $color-principal-dark;
+            @include hover-botones;
+        }
+    }
+}

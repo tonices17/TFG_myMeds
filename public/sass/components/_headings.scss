@@ -1,0 +1,64 @@
+.heading {
+    //Heading principal
+    &--primary {
+        color: $color-texto-enlace;
+        font-family: $fuente-titulo;
+        font-size: 6rem;
+        font-weight: 700;
+        text-shadow: 0 0.4rem 0.4rem $color-sombra;
+
+        @include mobile-s{
+            font-size: 4.5rem
+        }
+    }
+
+    //Heading secundario (como el primario pero cambia de color)
+    &--secondary {
+        @extend .heading--primary;
+        color: $color-texto;
+    }
+
+    //Heading terciario
+    &--tertiary {
+        color: $color-texto;
+        text-align: center;
+        text-shadow: 0 0.4rem 0.4rem $color-sombra;
+        align-self: center;
+        font-weight: 700;
+        font-size: 7rem;
+        font-family: $fuente-titulo;
+    }
+
+    //Heading cuartenario 
+    &--quaternary {
+        @extend .heading--tertiary;
+        background: -webkit-radial-gradient(circle, rgba(111, 208, 132, 1) 0%, rgba(111, 208, 132, 1) 37%, rgba(26, 177, 136, 1) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    //Heading quintenario
+    &--quinary {
+        color: $color-secundario;
+        text-align: center;
+        width: 40rem;
+        font: 600 4rem fuentePagina;
+    }
+
+    //Heading para descripciones
+    &--descripcion {
+        @extend .heading--primary;
+        margin-top: -3rem;
+        font-size: 2.2rem;
+
+        @include mobile {
+            font-size: 2rem;
+            margin-top: -1rem;
+        }
+
+        @include mobile-s{
+            font-size: 1.7rem;
+        }
+    }
+}

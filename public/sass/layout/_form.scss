@@ -1,0 +1,114 @@
+//Estilos para los formularios
+.formulario {
+    height: 100%;
+    padding-bottom: 0.2rem;
+
+    @include mobile {
+        height: auto;
+    }
+
+    //Enlaces del formulario
+    a {
+        text-decoration: none;
+        color: $color-principal;
+        transition: 0.5s ease;
+
+        &:hover {
+            color: $color-principal-dark;
+        }
+    }
+
+    // Estilos para el contenedor principal del formulario
+    &__contenedor {
+        background: rgba($form-bg, 0.9);
+        padding: 4rem;
+        max-width: 60rem;
+        margin: 4rem auto;
+        border-radius: $br;
+        box-shadow: 0 0.4rem 1rem 0.4rem rgba($form-bg, 0.3);
+    }
+
+    // Estilos para el título del formulario de registro
+    &__registro-title {
+        text-align: center;
+        color: $blanco;
+        font-weight: $thin;
+        margin: 0 0 5rem;
+        font-size: 2.2rem;
+    }
+
+    // Estilos para la fila superior del formulario
+    &__fila-arriba {
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        div {
+            float: left;
+            width: 48%;
+            margin-right: 4%;
+
+            @include mobile {
+                width: 100%;
+            }
+
+            &:last-child {
+                margin: 0;
+
+                @include mobile {
+                    margin-bottom: 4rem;
+                }
+            }
+        }
+    }
+
+    // Estilos para las etiquetas del formulario
+    &__label {
+        position: absolute;
+        transform: translateY(-2.5rem);
+        left: 1.3rem;
+        color: rgba($blanco, 0.5);
+        transition: all 0.25s ease;
+        backface-visibility: hidden;
+        pointer-events: none;
+        font-size: 2.2rem;
+    }
+
+    // Estilos para el simbolo * del formulario
+    &__req {
+        margin: 0.2rem;
+        color: $color-principal;
+    }
+
+    // Estilos para los campos de entrada del formulario
+    &__input {
+        font-size: 2.2rem;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0.5rem 1rem;
+        background: none;
+        background-image: none;
+        border: 0.1rem solid $gris-light;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        color: $blanco;
+        border-radius: 0;
+        transition: all 0.5s ease;
+        border-radius: 0.5rem;
+
+        &:focus {
+            outline: none;
+            border-color: $color-principal;
+        }
+    }
+
+    // Estilos para los contenedores de entrada del formulario
+    &__contenedor-input {
+        position: relative;
+        margin-bottom: 4rem;
+    }
+}

@@ -1,0 +1,30 @@
+//FUENTES
+$fuente-titulo: Lato, sans-serif;
+$fuente-cuerpo: Open Sans, sans-serif;
+$fuente-principal: "Ubuntu", helvetica;
+$fuente-secundaria: "Raleway", arial;
+
+//COLORES
+$color-primario: #6FD084;
+$color-secundario: #F36A5C;
+$color-fondo: #B8E8C3;
+$color-texto: #000;
+$color-texto-oscuro: #040403;
+$color-texto-enlace: #fff;
+$color-texto-enlace-hover: #F36A5C;
+$color-sombra: rgba(0, 0, 0, 0.25);
+$body-bg: #c1bdba;
+$form-bg: #13232f;
+$blanco: #fff;
+$color-principal: #1ab188;
+$color-principal-light: lighten($color-principal,5%);
+$color-principal-dark: darken($color-principal,5%);
+$gris-light: #a0b3b0;
+$gris: #ddd;
+
+//MEDIDAS
+$thin: 300;
+$normal: 400;
+$bold: 600;
+$br: 0.4rem;
+
