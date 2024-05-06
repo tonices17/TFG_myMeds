@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -f "/usr/bin/php8.3" ]; then
+    php="/usr/bin/php8.3"
+elif [ -f "/usr/local/php83/bin/php" ]; then
+    php="/usr/local/php83/bin/php"
+else
+    php="/usr/bin/php"
+fi
+
+$php "$@"

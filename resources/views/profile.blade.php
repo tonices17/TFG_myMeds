@@ -33,8 +33,8 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2 flex-between">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Perfil</h1>
+                        <div class="col-sm-12">
+                            <h1 class="m-0 nav__logo-letra" style="text-align: center; color: black;">Perfil</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -42,19 +42,150 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header nav__logo-letra" style="color: black; font-size: 25px">{{
+                                __('Editar Usuario') }}
+                            </div>
 
+                            <div class="card-body">
+                                <form method="POST" action="#">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-md-4 col-form-label text-md-right">{{
+                                            __('Nombre') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="nombre" type="text"
+                                                class="form-control @error('nombre') is-invalid @enderror" name="nombre"
+                                                value="{{ old('nombre', $usuario->name) }}" required
+                                                autocomplete="nombre" autofocus>
+
+                                            @error('nombre')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo
+                                            Electrónico')
+                                            }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="email" type="email"
+                                                class="form-control @error('email') is-invalid @enderror" name="email"
+                                                value="{{ old('email', $usuario->email) }}" required
+                                                autocomplete="email">
+
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="telefono" class="col-md-4 col-form-label text-md-right">{{
+                                            __('Teléfono')
+                                            }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="telefono" type="tel"
+                                                class="form-control @error('telefono') is-invalid @enderror"
+                                                name="telefono" value="{{ old('telefono', $usuario->phone_number) }}"
+                                                required autocomplete="tel">
+
+                                            @error('telefono')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="password" class="col-md-4 col-form-label text-md-right">{{
+                                            __('Contraseña')
+                                            }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="password" type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                name="password" autocomplete="new-password">
+
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-6 offset-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Guardar Cambios') }}
+                                            </button>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#eliminarUsuario">
+                                                {{ __('Eliminar Usuario') }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="eliminarUsuario" tabindex="-1" role="dialog"
+                aria-labelledby="eliminarUsuarioLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eliminarUsuarioLabel">{{ __('Confirmar Eliminación') }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ __('¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede
+                            deshacer.') }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar')
+                                }}</button>
+                            <form method="POST" action="#">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">{{ __('Eliminar') }}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
+        {{-- <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
             <div class="p-3">
                 <h5>Title</h5>
                 <p>Sidebar content</p>
             </div>
-        </aside>
+        </aside> --}}
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->

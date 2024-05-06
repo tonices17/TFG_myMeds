@@ -20,7 +20,8 @@
                             Calendario
                         </p>
                     </a>
-                    <a href="#" class="nav-link {{ request()->routeIs('medications') ? 'active' : '' }}">
+                    <a href="{{ route('medicamentos') }}"
+                        class="nav-link {{ request()->routeIs('medicamentos') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-pills"></i>
                         <p>
                             Medicamentos

@@ -23,4 +23,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile', [UserController::class, 'show'])->name('profile');
+    Route::get('/medicamentos', function () {
+        return view('medicamentos');
+    })->name('medicamentos');
 });
