@@ -13,8 +13,9 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    @if (Auth::user()->email === 'admin@admin.com')
+                    {{Auth::user()->assignRole('admin'); }}
+                    @endif
                 </div>
             </div>
         </div>

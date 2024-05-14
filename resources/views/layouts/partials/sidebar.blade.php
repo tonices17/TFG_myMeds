@@ -27,19 +27,29 @@
                             Medicamentos
                         </p>
                     </a>
-                    <a href="#" class="nav-link {{ request()->routeIs('treatments') ? 'active' : '' }}">
+                    <a href="{{ route('tratamientos.index') }}"
+                        class="nav-link {{ request()->routeIs('tratamientos.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             Tratamientos
                         </p>
                     </a>
-                    <a href="{{ route('profile') }}"
-                        class="nav-link {{ request()->routeIs('profile') ? 'active' : '' }}">
+                    <a href="{{ route('users.edit', Auth::user()->id) }}"
+                        class="nav-link {{ request()->routeIs('users.edit') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-regular fa-user"></i>
                         <p>
                             Perfil
                         </p>
                     </a>
+                    @if(Auth::user()->hasRole('admin'))
+                    <a href="{{ route('users.index') }}"
+                        class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-regular fa-users"></i>
+                        <p>
+                            Usuarios
+                        </p>
+                    </a>
+                    @endif
                 </li>
                 <li>
                     <hr style="border-color: #fff;">
