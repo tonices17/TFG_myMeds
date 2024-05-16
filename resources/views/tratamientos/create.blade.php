@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>myMeds - Users</title>
+    <title>myMeds - Tratamientos</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -127,8 +127,10 @@
                                         <div class="form-group">
                                             <label for="medicamento" class="required">Medicamento </label>
                                             <div class="search-container">
-                                                <input type="text" id="search" placeholder="Escriba el nombre del medicamento..." 
-                                                class="form-control {{$errors->has('descripcion') ? 'is-invalid' : ''}}" value="{{ old('medicamento', '') }}">
+                                                <input type="text" name="medicamento" id="search"
+                                                    placeholder="Escriba el nombre del medicamento..."
+                                                    class="form-control {{$errors->has('medicamento') ? 'is-invalid' : ''}}"
+                                                    value="{{ old('medicamento', '') }}">
                                                 <ul id="results" class="dropdown"></ul>
                                             </div>
                                             @if ($errors->has('medicamento'))
@@ -141,7 +143,8 @@
                                             <label for="fecha_inicio" class="required">Fecha de inicio </label>
                                             <input type="date" name="fecha_inicio" id="fecha_inicio"
                                                 class="form-control {{$errors->has('fecha_inicio') ? 'is-invalid' : ''}}"
-                                                placeholder="Ingresa la fecha de inicio del tratamiento">
+                                                placeholder="Ingresa la fecha de inicio del tratamiento"
+                                                value="{{ old('fecha_inicio', '') }}">
                                             @if ($errors->has('fecha_inicio'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('fecha_inicio') }}</strong>
@@ -153,7 +156,8 @@
                                             </label>
                                             <input type="number" name="duracion_tratamiento" id="duracion_tratamiento"
                                                 class="form-control {{$errors->has('duracion_tratamiento') ? 'is-invalid' : ''}}"
-                                                placeholder="Ingresa la duracion del tratamiento (en días)">
+                                                placeholder="Ingresa la duracion del tratamiento (en días)"
+                                                value="{{ old('duracion_tratamiento', '') }}">
                                             <div class="form-check">
                                                 <input type="checkbox" id="indefinido" name="indefinido"
                                                     class="form-check-input">
@@ -170,7 +174,8 @@
                                             </label>
                                             <input type="number" name="frecuencia_toma" id="frecuencia_toma"
                                                 class="form-control {{$errors->has('frecuencia_toma') ? 'is-invalid' : ''}}"
-                                                placeholder="Ingresa la frecuencia de toma (en horas)">
+                                                placeholder="Ingresa la frecuencia de toma (en horas)"
+                                                value="{{ old('frecuencia_toma', '') }}">
                                             @if ($errors->has('frecuencia_toma'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('frecuencia_toma') }}</strong>
@@ -189,8 +194,6 @@
                                             </div>
                                         </div>
                                     </form>
-
-
                                 </div>
                             </div>
                         </div>
@@ -235,10 +238,10 @@
         document.getElementById('indefinido').addEventListener('change', function () {
             var duracionInput = document.getElementById('duracion_tratamiento');
             if (this.checked) {
-                duracionInput.disabled = true;
-                duracionInput.value = ''; // Limpiar el valor
+                duracionInput.type = "hidden";
+                duracionInput.value = 0;
             } else {
-                duracionInput.disabled = false;
+                duracionInput.type = "number";
             }
         });
     </script>

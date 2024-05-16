@@ -11,7 +11,7 @@ class StoreTratamientoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,10 +19,16 @@ class StoreTratamientoRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'user_id' => 'required|exists:users,id',
+            'medicamento' => 'required|string|max:255',
+            'fecha_inicio' => 'required|date',
+            'duracion_tratamiento' => '|integer|min:0',
+            'frecuencia_toma' => 'required|string|max:255',
         ];
     }
 }

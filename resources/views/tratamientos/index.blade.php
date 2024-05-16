@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>myMeds - Users</title>
+    <title>myMeds - Tratamientos</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -79,25 +79,23 @@
                                             <tr>
                                                 <td>{{$tratamiento->nombre}}</td>
                                                 <td>{{$tratamiento->descripcion}}</td>
+                                                @if(Auth::user()->hasRole('admin'))
                                                 <td>{{$tratamiento->user->name}}</td>
+                                                @endif
                                                 <td>{{$tratamiento->medicamento}}</td>
                                                 <td>{{$tratamiento->fecha_inicio}}</td>
-                                                @php
-                                                // Convertir la fecha de inicio a objeto DateTime
-                                                $fechaInicioObj = new DateTime($tratamiento->fecha_inicio);
-
-                                                // Clonar la fecha de inicio para no modificarla
-                                                $fechaFinalObj = clone $fechaInicioObj;
-
-                                                // Sumar la duración del tratamiento a la fecha de inicio
-                                                $fechaFinalObj->modify('+' . $tratamiento->duracion_tratamiento . '
-                                                days');
-
-                                                // Obtener la fecha final como una cadena en formato YYYY-MM-DD
-                                                $fechaFinal = $fechaFinalObj->format('Y-m-d');
-                                                @endphp
-                                                <td>{{$fechaFinal}}</td>
-                                                <td>{{$tratamiento->frecuencia_toma}}</td>
+                                                {{-- @php
+                                                $fecha = date_create_from_format('Y-m-d', $tratamiento->fecha_inicio);
+                                                if ($tratamiento->duracion_tratamiento == 0) {
+                                                $fechaFinal = "Indefinido"
+                                                } else {
+                                                $fechaFinal = date_modify($fecha, '+' .
+                                                $tratamiento->duracion_tratamiento . ' days');
+                                                $fechaFinal = date_format($fechaFinal, 'Y-m-d');
+                                                }
+                                                @endphp --}}
+                                                <td>{{$tratamiento->duracion_tratamiento}}</td>
+                                                <td>{{$tratamiento->frecuencia_toma}} horas</td>
                                                 <td>
                                                     <a href="{{ route('tratamientos.edit', $tratamiento->id) }}"
                                                         class="btn btn-success">

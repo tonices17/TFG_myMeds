@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('medicamento');
             $table->date('fecha_inicio');
-            $table->integer('duracion_tratamiento');
+            $table->integer('duracion_tratamiento')->default(0);
             $table->string('frecuencia_toma');
             $table->timestamps();
 
