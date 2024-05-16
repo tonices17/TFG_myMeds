@@ -28,7 +28,7 @@
                         </p>
                     </a>
                     <a href="{{ route('tratamientos.index') }}"
-                        class="nav-link {{ request()->routeIs('tratamientos.index') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('tratamientos.index') | request()->routeIs('tratamientos.create') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             Tratamientos

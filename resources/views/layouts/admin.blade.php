@@ -44,9 +44,6 @@
                     <div class="row mb-2 flex-between">
                         <div class="col-sm-12">
                             <h1 class="m-0 nav__logo-letra" style="text-align: center; color: black;">Calendario</h1>
-                            @if(Auth::user()->hasRole('admin'))
-                            <h2>Eres admin</h2>
-                            @endif
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->

@@ -15,6 +15,51 @@
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+
+        #search {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        #results li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #results li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .medicamento-detalle {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -42,11 +87,13 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <form id="searchForm">
-                <input type="text" id="searchInput" placeholder="Buscar medicamentos...">
-            </form>
-
-            <div id="results"></div>
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" id="search" placeholder="Escriba el nombre del medicamento...">
+                    <ul id="results" class="dropdown"></ul>
+                </div>
+                <div id="medicamento-detalle" class="medicamento-detalle"></div>
+            </div>
 
 
             <!-- /.content -->
@@ -76,35 +123,7 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const resultsDiv = document.getElementById('results');
-    
-        searchInput.addEventListener('keyup', async function() {
-            const query = this.value.trim();
-    
-            if (query.length === 0) {
-                resultsDiv.innerHTML = ''; // Limpiar los resultados si la consulta está vacía
-                return;
-            }
-    
-            try {
-                const response = await fetch(`/api/medicamentos?query=${encodeURIComponent(query)}`);
-                const data = await response.json();
-    
-                // Construir la lista de resultados
-                let html = '<ul>';
-                data.forEach(medicamento => {
-                    html += `<li>${medicamento.nombre}</li>`;
-                });
-                html += '</ul>';
-    
-                resultsDiv.innerHTML = html;
-            } catch (error) {
-                console.error('Error al buscar medicamentos:', error);
-            }
-        });
-    </script>
+    <script src="{{ asset('js/scriptMedicamentos.js') }}"></script>
 </body>
 
 </html>

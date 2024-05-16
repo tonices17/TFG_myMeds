@@ -15,6 +15,44 @@
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+
+        #search {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: white;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        #results li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #results li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -59,7 +97,7 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <form method="POST" action="{{route('tratamientos.store')}}">
+                                    <form method="POST" action="{{ route('tratamientos.store') }}">
                                         @csrf
                                         <div class="form-group">
                                             <label for="nombre" class="required">Nombre</label>
@@ -86,12 +124,13 @@
                                             @endif
                                         </div>
                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                        <!-- Cambiar este input para que en lugar de que sea tipo texto, sea de tipo buscador -->
                                         <div class="form-group">
                                             <label for="medicamento" class="required">Medicamento </label>
-                                            <input type="text" name="medicamento" id="medicamento"
-                                                class="form-control {{$errors->has('medicamento') ? 'is-invalid' : ''}}"
-                                                placeholder="Ingrese la contraseña del usuario">
+                                            <div class="search-container">
+                                                <input type="text" id="search" placeholder="Escriba el nombre del medicamento..." 
+                                                class="form-control {{$errors->has('descripcion') ? 'is-invalid' : ''}}" value="{{ old('medicamento', '') }}">
+                                                <ul id="results" class="dropdown"></ul>
+                                            </div>
                                             @if ($errors->has('medicamento'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('medicamento') }}</strong>
@@ -203,6 +242,7 @@
             }
         });
     </script>
+    <script src="{{ asset('js/scriptMedicamentos.js') }}"></script>
 </body>
 </body>
 
