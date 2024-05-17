@@ -89,8 +89,12 @@
             <!-- Main content -->
             <div class="container">
                 <div class="search-container">
-                    <input type="text" id="search" placeholder="Escriba el nombre del medicamento...">
-                    <ul id="results" class="dropdown"></ul>
+                    <form action="{{ route('tratamientos.create') }}" method="GET">
+                        <input type="text" id="search" name="nombre" placeholder="Escriba el nombre del medicamento...">
+                        <ul id="results" class="dropdown"></ul>
+                        <button type="submit" class="btn mb-4" style="background: #F36A5C; color: white;">Crear un
+                            tratamiento</button>
+                    </form>
                 </div>
                 <div id="medicamento-detalle" class="medicamento-detalle"></div>
             </div>

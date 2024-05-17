@@ -104,7 +104,7 @@
 
                                                     <form action="{{ route('tratamientos.destroy', $tratamiento->id) }}"
                                                         id="delete_form" method="POST"
-                                                        onsubmit="return confirm('Esta seguro que desea eliminar el registro?')"
+                                                        onsubmit="return confirm('Esta seguro que desea eliminar el tratamiento?')"
                                                         style="display: inline-block;">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

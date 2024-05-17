@@ -85,26 +85,35 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 nav__logo-letra" style="color: black">Nuevo Tratamiento</h1>
+                            <h1 class="m-0 nav__logo-letra" style="color: black">Editar Tratamiento</h1>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="content">
                 <div class="container-fluid">
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
 
-                                    <form method="POST" action="{{ route('tratamientos.store') }}">
+                                    <form method="POST" action="{{ route('tratamientos.update', $tratamiento->id) }}">
                                         @csrf
+                                        @method('PUT')
                                         <div class="form-group">
                                             <label for="nombre" class="required">Nombre</label>
                                             <input type="text" name="nombre" id="nombre"
                                                 class="form-control {{$errors->has('nombre') ? 'is-invalid' : ''}}"
                                                 placeholder="Ingrese el nombre del tratamiento"
-                                                value="{{old('nombre', '')}}">
+                                                value="{{old('nombre', $tratamiento->nombre)}}">
                                             @if ($errors->has('nombre'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('nombre') }}</strong>
@@ -116,7 +125,7 @@
                                             <input type="text-area" name="descripcion" id="descripcion"
                                                 class="form-control {{$errors->has('descripcion') ? 'is-invalid' : ''}}"
                                                 placeholder="Ingrese la descripción del tratamiento"
-                                                value="{{old('descripcion', '')}}">
+                                                value="{{old('descripcion', $tratamiento->descripcion)}}">
                                             @if ($errors->has('descripcion'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('descripcion') }}</strong>
@@ -130,7 +139,7 @@
                                                 <input type="text" name="medicamento" id="search"
                                                     placeholder="Escriba el nombre del medicamento..."
                                                     class="form-control {{$errors->has('medicamento') ? 'is-invalid' : ''}}"
-                                                    value="{{ old('medicamento', $nombre ?? '') }}">
+                                                    value="{{ old('medicamento', $tratamiento->medicamento) }}">
                                                 <ul id="results" class="dropdown"></ul>
                                             </div>
                                             @if ($errors->has('medicamento'))
@@ -144,7 +153,7 @@
                                             <input type="date" name="fecha_inicio" id="fecha_inicio"
                                                 class="form-control {{$errors->has('fecha_inicio') ? 'is-invalid' : ''}}"
                                                 placeholder="Ingresa la fecha de inicio del tratamiento"
-                                                value="{{ old('fecha_inicio', '') }}">
+                                                value="{{ old('fecha_inicio', $tratamiento->fecha_inicio) }}">
                                             @if ($errors->has('fecha_inicio'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('fecha_inicio') }}</strong>
@@ -157,7 +166,7 @@
                                             <input type="number" name="duracion_tratamiento" id="duracion_tratamiento"
                                                 class="form-control {{$errors->has('duracion_tratamiento') ? 'is-invalid' : ''}}"
                                                 placeholder="Ingresa la duracion del tratamiento (en días)"
-                                                value="{{ old('duracion_tratamiento', '') }}">
+                                                value="{{ old('duracion_tratamiento', $tratamiento->duracion_tratamiento) }}">
                                             <div class="form-check">
                                                 <input type="checkbox" id="indefinido" name="indefinido"
                                                     class="form-check-input">
@@ -175,7 +184,7 @@
                                             <input type="number" name="frecuencia_toma" id="frecuencia_toma"
                                                 class="form-control {{$errors->has('frecuencia_toma') ? 'is-invalid' : ''}}"
                                                 placeholder="Ingresa la frecuencia de toma (en horas)"
-                                                value="{{ old('frecuencia_toma', '') }}">
+                                                value="{{ old('frecuencia_toma', $tratamiento->frecuencia_toma) }}">
                                             @if ($errors->has('frecuencia_toma'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('frecuencia_toma') }}</strong>

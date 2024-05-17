@@ -22,7 +22,33 @@ class UpdateTratamientoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'descripcion' => [
+                'required',
+                'string',
+            ],
+            'medicamento' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'fecha_inicio' => [
+                'required',
+                'date',
+            ],
+            'duracion_tratamiento' => [
+                'integer',
+                'min:0',
+            ],
+            'frecuencia_toma' => [
+                'required',
+                'string',
+                'max:255',
+            ]
         ];
     }
 }

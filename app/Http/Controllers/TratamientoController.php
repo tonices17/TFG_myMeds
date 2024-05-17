@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTratamientoRequest;
+use App\Http\Requests\UpdateTratamientoRequest;
 use App\Models\Tratamiento;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,9 +34,11 @@ class TratamientoController extends Controller
         return view('tratamientos.index', compact('tratamientos'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('tratamientos.create');
+        $nombre = $request->query('nombre', '');
+
+        return view('tratamientos.create', compact('nombre'));
     }
 
     public function store(StoreTratamientoRequest $request)
@@ -44,5 +47,27 @@ class TratamientoController extends Controller
         Tratamiento::create($request->validated());
 
         return redirect()->route('tratamientos.index')->with('success', 'Tratamiento creado exitosamente');
+    }
+
+    public function edit(Tratamiento $tratamiento)
+    {
+        return view('tratamientos.edit', compact('tratamiento'));
+    }
+
+    public function update(UpdateTratamientoRequest $request, Tratamiento $tratamiento)
+    {
+        $requestData = $request->validated();
+
+        $tratamiento->update($requestData);
+
+        return redirect()->route('tratamientos.edit', compact('tratamiento'))->with('success', 'Tratamiento editado exitosamente');
+    }
+
+    public function destroy(Tratamiento $tratamiento)
+    {
+        //
+        $tratamiento->delete();
+
+        return back()->with('success', 'Tratamiendo borrado exitosamente');
     }
 }

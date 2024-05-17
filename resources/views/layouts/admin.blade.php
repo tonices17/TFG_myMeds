@@ -23,6 +23,11 @@
             font: 400 2.5rem fuentePagina;
             color: black;
         }
+
+        .custom-event {
+            margin-bottom: 1px;
+            /* Ajusta este valor para más o menos espacio */
+        }
     </style>
 </head>
 
@@ -93,18 +98,23 @@
     <!-- FUll Calendar -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          height: 750,
-          buttonText: {
-            today: 'Hoy',
-          },     
-          firstDay: 1,
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                height: 750,
+                buttonText: {
+                    today: 'Hoy',
+                },
+                firstDay: 1,
+                fixedWeekCount: false,
+                events: @json($eventos), // Pasar los eventos al calendario
+                eventDidMount: function(info) {
+                // Agregar una clase personalizada a los eventos
+                info.el.classList.add('custom-event');
+                }
+            });
+            calendar.render();
         });
-        calendar.render();
-      });
-
     </script>
 </body>
 
