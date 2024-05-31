@@ -38,7 +38,7 @@ class HomeController extends Controller
                 $start_date->copy()->addDays($tratamiento->duracion_tratamiento);
 
             $evento = [
-                'title' => $tratamiento->nombre, // Nombre del tratamiento
+                'title' => $tratamiento->medicamento, // Nombre del tratamiento
                 'start' => $tratamiento->fecha_inicio, // Fecha de inicio del tratamiento
                 'end' => $end_date, // Fecha de fin del tratamiento
                 'color' => ($tratamiento->duracion_tratamiento == 0) ? '#F36A5C' : '#8fdf82', // Color dependiendo de la duración
@@ -53,7 +53,7 @@ class HomeController extends Controller
 
                 while ($current_date->lessThan($end_limit)) {
                     $eventos[] = [
-                        'title' => $tratamiento->nombre,
+                        'title' => $tratamiento->medicamento,
                         'start' => $current_date->toDateString(),
                         'color' => 'red',
                         'allDay' => true,

@@ -127,7 +127,11 @@
     <!-- Datatable -->
     <script>
         $(document).ready(function() {
-            $('#user_table').DataTable();
+            $('#user_table').DataTable({
+                "paging": true, // Activar paginación
+                "pageLength": 10, // Establecer el número de registros por página a 10
+                "searching": true // Activar la barra de búsqueda
+            });
         });
     </script>
 </body>

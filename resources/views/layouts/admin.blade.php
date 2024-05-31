@@ -28,6 +28,34 @@
             margin-bottom: 1px;
             /* Ajusta este valor para más o menos espacio */
         }
+
+        .legend-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .legend {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border-radius: 3px;
+        }
+
+        .chronic {
+            background-color: #F36A5C;
+        }
+
+        .normal {
+            background-color: #20c997;
+        }
     </style>
 </head>
 
@@ -61,6 +89,18 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
+                                <!-- Legend -->
+                                <div class="legend-container">
+                                    <div class="legend">
+                                        <div class="legend-color chronic"></div>
+                                        <span>Tratamientos Crónicos</span>
+                                    </div>
+                                    <div class="legend">
+                                        <div class="legend-color normal"></div>
+                                        <span>Tratamientos Normales</span>
+                                    </div>
+                                </div>
+                                <!-- Calendar -->
                                 <div id='calendar'></div>
                             </div>
                         </div>
@@ -95,7 +135,7 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
-    <!-- FUll Calendar -->
+    <!-- Full Calendar -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
@@ -109,8 +149,13 @@
                 fixedWeekCount: false,
                 events: @json($eventos), // Pasar los eventos al calendario
                 eventDidMount: function(info) {
-                // Agregar una clase personalizada a los eventos
-                info.el.classList.add('custom-event');
+                    // Agregar una clase personalizada a los eventos
+                    info.el.classList.add('custom-event');
+                    if (info.event.extendedProps.tipo === 'cronico') {
+                        info.el.style.backgroundColor = '#F36A5C';
+                    } else if (info.event.extendedProps.tipo === 'normal') {
+                        info.el.style.backgroundColor = '#20c997';
+                    }
                 }
             });
             calendar.render();

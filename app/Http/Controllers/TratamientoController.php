@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTratamientoRequest;
 use App\Http\Requests\UpdateTratamientoRequest;
 use App\Models\Tratamiento;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,5 +70,26 @@ class TratamientoController extends Controller
         $tratamiento->delete();
 
         return back()->with('success', 'Tratamiendo borrado exitosamente');
+    }
+
+    public function pdf()
+    {
+        $tratamientos = Tratamiento::all()->where('user_id', Auth::user()->id);
+
+        $tratamientos->transform(function ($tratamiento) {
+            if ($tratamiento->duracion_tratamiento == 0) {
+                $tratamiento->duracion_tratamiento = "Indefinido";
+            } else {
+                $fechaInicio = Carbon::createFromFormat('Y-m-d', $tratamiento->fecha_inicio);
+                $tratamiento->duracion_tratamiento = $fechaInicio->addDays($tratamiento->duracion_tratamiento)->format('Y-m-d');
+            }
+
+            return $tratamiento;
+        });
+
+        $pdf = app()->make('dompdf.wrapper');
+        $pdf->loadView('tratamientos.pdf', compact('tratamientos'));
+
+        return $pdf->download('tratamientos.pdf');
     }
 }

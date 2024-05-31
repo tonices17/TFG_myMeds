@@ -26,6 +26,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('users', UserController::class);
+    Route::get('tratamientos/pdf', [TratamientoController::class, 'pdf'])->name('tratamientos.pdf');
     Route::resource('tratamientos', TratamientoController::class);
     Route::get('/profile', [UserController::class, 'edit'])->name('profile');
     Route::get('/medicamentos', function () {

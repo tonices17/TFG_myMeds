@@ -59,6 +59,10 @@
                                     <a href="{{ route('tratamientos.create') }}" class="btn mb-4"
                                         style="background: #F36A5C; color: white;">Nuevo
                                         Tratamiento</a>
+                                    <a href="{{ route('tratamientos.pdf') }}" class="btn mb-4"
+                                        style="background: #F36A5C; color: white;">
+                                        Descargar PDF
+                                    </a>
                                     <table class="table table-bordered" id="tratamiento_table">
                                         <thead>
                                             <tr>
@@ -152,7 +156,11 @@
     <!-- Datatable -->
     <script>
         $(document).ready(function() {
-            $('#user_table').DataTable();
+        $('#tratamiento_table').DataTable({
+        "paging": true, // Activar paginación
+        "pageLength": 10, // Establecer el número de registros por página a 10
+        "searching": true // Activar la barra de búsqueda
+        });
         });
     </script>
 </body>
