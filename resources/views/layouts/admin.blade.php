@@ -32,7 +32,7 @@
         .legend-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 1rem;
+            margin: 1rem 0 1rem 0;
         }
 
         .legend {
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="legend">
                                         <div class="legend-color normal"></div>
-                                        <span>Tratamientos Normales</span>
+                                        <span>Tratamientos preventivos</span>
                                     </div>
                                 </div>
                                 <!-- Calendar -->
