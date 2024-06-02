@@ -24,6 +24,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ]);
 
+        $user = User::factory()->create([
+            'name' => 'Antonio Céspedes',
+            'email' => 'tonices17@gmail.com',
+            'phone_number' => '647914881',
+            'password' => Hash::make('12345678'),
+        ]);
+        
         $this->call(RolesTableSeeder::class);
     }
 }

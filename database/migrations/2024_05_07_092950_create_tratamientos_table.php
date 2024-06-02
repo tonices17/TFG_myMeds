@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('medicamento');
             $table->date('fecha_inicio');
             $table->integer('duracion_tratamiento')->default(0);
-            $table->string('frecuencia_toma');
+            $table->integer('frecuencia_toma');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
