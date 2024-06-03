@@ -66,6 +66,10 @@
             font-family: fuentePagina;
         }
 
+        .nav__menu-desplegable a:hover {
+            color: #F36A5F;
+        }
+
         /* Media query para dispositivos móviles */
         @media only screen and (max-width: 768px) {
             .nav__lista {
