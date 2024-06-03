@@ -7,8 +7,7 @@
     <title>myMeds - Calendario</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <!-- Theme style -->
@@ -26,7 +25,6 @@
 
         .custom-event {
             margin-bottom: 1px;
-            /* Ajusta este valor para más o menos espacio */
         }
 
         .legend-container {
@@ -56,30 +54,55 @@
         .normal {
             background-color: #20c997;
         }
+
+        /* Styles for the sidebar toggle button */
+        .sidebar-toggle {
+            display: none;
+            background-color: #F36A5C;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+
+        @media (max-width: 426px) {
+            .sidebar-toggle {
+                display: block;
+            }
+
+            .main-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-sidebar.active {
+                transform: translateX(0);
+                margin-left: 0px;
+            }
+        }
     </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
-        <!-- Navbar -->
-
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
         @include('layouts.partials.sidebar')
-
+        
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2 flex-between">
+                        <!-- Sidebar Toggle Button -->
+                        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
                         <div class="col-sm-12">
                             <h1 class="m-0 nav__logo-letra" style="text-align: center; color: black;">Calendario</h1>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.content-header -->
 
@@ -105,22 +128,11 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
+                </div>
             </div>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
         @include('layouts.partials.footer')
@@ -147,9 +159,8 @@
                 },
                 firstDay: 1,
                 fixedWeekCount: false,
-                events: @json($eventos), // Pasar los eventos al calendario
+                events: @json($eventos),
                 eventDidMount: function(info) {
-                    // Agregar una clase personalizada a los eventos
                     info.el.classList.add('custom-event');
                     if (info.event.extendedProps.tipo === 'cronico') {
                         info.el.style.backgroundColor = '#F36A5C';
@@ -159,6 +170,18 @@
                 }
             });
             calendar.render();
+
+            document.getElementById('sidebarToggle').addEventListener('click', function() {
+                document.querySelector('.main-sidebar').classList.toggle('active');
+            });
+
+            document.addEventListener('click', function(event) {
+                var sidebar = document.querySelector('.main-sidebar');
+                var toggleButton = document.getElementById('sidebarToggle');
+                if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>

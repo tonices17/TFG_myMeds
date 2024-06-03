@@ -59,6 +59,34 @@
             margin-top: 20px;
             text-align: left;
         }
+
+        /* Styles for the sidebar toggle button */
+        .sidebar-toggle {
+            display: none;
+            background-color: #F36A5C;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+
+        @media (max-width: 426px) {
+            .sidebar-toggle {
+                display: block;
+            }
+
+            .main-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-sidebar.active {
+                transform: translateX(0);
+                margin-left: 0px;
+            }
+        }
     </style>
 </head>
 
@@ -78,6 +106,7 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2 flex-between">
+                        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
                         <div class="col-sm-12">
                             <h1 class="m-0 nav__logo-letra" style="text-align: center; color: black;">Medicamentos</h1>
                         </div><!-- /.col -->
@@ -128,6 +157,19 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
     <script src="{{ asset('js/scriptMedicamentos.js') }}"></script>
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+                document.querySelector('.main-sidebar').classList.toggle('active');
+            });
+            
+        document.addEventListener('click', function(event) {
+                var sidebar = document.querySelector('.main-sidebar');
+                var toggleButton = document.getElementById('sidebarToggle');
+                if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                }
+            });
+    </script>
 </body>
 
 </html>
