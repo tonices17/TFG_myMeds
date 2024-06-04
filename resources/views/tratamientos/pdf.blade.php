@@ -77,7 +77,7 @@
     @endphp
     <div class="header">
         <img src="{{ public_path('assets/logo.png') }}" alt="Logo">
-        <h1>myMeds</h1>
+        <h1 style="display: inline-block">myMeds</h1>
         <h2>Tratamientos de {{ $usuario->name }}</h2>
     </div>
     <table>

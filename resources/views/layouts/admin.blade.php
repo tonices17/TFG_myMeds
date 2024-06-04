@@ -39,7 +39,7 @@
             display: flex;
             align-items: center;
             margin-right: 1rem;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: fuentePagina;
         }
 
         .legend-color {
