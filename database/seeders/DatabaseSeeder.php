@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Tratamiento;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -32,6 +34,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Tratamiento::factory(5)->create();
+
+        Tratamiento::factory()->create([
+            'user_id' => 2,
+            'nombre' => 'Azucar',
+            'descripcion' => 'Descripción de mi tratamiento',
+            'medicamento' => 'Paracetamol',
+            'frecuencia_toma' => 8, // frecuencia en horas
+            'created_at' => Carbon::now(),
+            'duracion_tratamiento' => 15, // duración en días
+            'fecha_inicio' => Carbon::now(),
+        ]);
 
         $this->call(RolesTableSeeder::class);
     }
