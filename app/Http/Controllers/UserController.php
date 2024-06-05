@@ -40,7 +40,6 @@ class UserController extends Controller
     public function show()
     {
         $usuario = auth()->user();
-        // $usuario = User::find(1);
 
         return view('profile', compact('usuario'));
     }

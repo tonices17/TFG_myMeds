@@ -18,7 +18,7 @@
         }
 
         .header img {
-            width: 100px;
+            width: 50px;
             height: auto;
             margin-right: 10px;
             /* Espacio entre el logo y el texto */
