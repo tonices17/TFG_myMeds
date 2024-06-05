@@ -30,7 +30,9 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '647914881',
             'password' => Hash::make('12345678'),
         ]);
-        
+
+        \App\Models\Tratamiento::factory(5)->create();
+
         $this->call(RolesTableSeeder::class);
     }
 }

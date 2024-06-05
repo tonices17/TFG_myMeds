@@ -19,7 +19,7 @@ class TratamientoFactory extends Factory
     {
         return [
             'user_id' => \App\Models\User::factory(),
-            'nombre' => $this->faker->word,
+            'nombre' => $this->faker->name(),
             'medicamento' => 'Paracetamol',
             'frecuencia_toma' => $this->faker->numberBetween(1, 24), // frecuencia en horas
             'created_at' => Carbon::now()->subHours($this->faker->numberBetween(1, 24)),
