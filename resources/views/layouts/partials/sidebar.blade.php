@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4 background-verde">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 {{ Auth::user()->hasRole('admin') ? '' : 'background-verde' }}">
     <!-- Brand Logo -->
     <a class="nav__logo" style="text-decoration: none; padding: 10px; margin: 0 auto;" href="{{ route('mymeds') }}">
         <img src="{{ asset('assets/logo.png') }}" alt="pastilla-logo" style="width: 60px; padding-top:5px;">
@@ -20,25 +20,36 @@
                             Calendario
                         </p>
                     </a>
-                    <a href="#" class="nav-link {{ request()->routeIs('medications') ? 'active' : '' }}">
+                    <a href="{{ route('medicamentos') }}"
+                        class="nav-link {{ request()->routeIs('medicamentos') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-pills"></i>
                         <p>
                             Medicamentos
                         </p>
                     </a>
-                    <a href="#" class="nav-link {{ request()->routeIs('treatments') ? 'active' : '' }}">
+                    <a href="{{ route('tratamientos.index') }}"
+                        class="nav-link {{ request()->routeIs('tratamientos.index') | request()->routeIs('tratamientos.create') | request()->routeIs('tratamientos.edit') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             Tratamientos
                         </p>
                     </a>
-                    <a href="{{ route('profile') }}"
-                        class="nav-link {{ request()->routeIs('profile') ? 'active' : '' }}">
+                    <a href="{{ route('users.edit', Auth::user()->id) }}"
+                        class="nav-link {{ request()->routeIs('users.edit') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-regular fa-user"></i>
                         <p>
                             Perfil
                         </p>
                     </a>
+                    @if(Auth::user()->hasRole('admin'))
+                    <a href="{{ route('users.index') }}"
+                        class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-regular fa-users"></i>
+                        <p>
+                            Usuarios
+                        </p>
+                    </a>
+                    @endif
                 </li>
                 <li>
                     <hr style="border-color: #fff;">

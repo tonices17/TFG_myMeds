@@ -8,6 +8,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myMeds - Home</title>
     <link rel="stylesheet" href="{{ asset('sass/main.css') }}">
+    <link rel="icon" href="{{ asset('assets/logo.png') }}">
+    <style>
+        /* Estilos adicionales para los elementos de la hamburguesa */
+        .nav__menu {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-left: auto;
+            /* Mueve el icono de hamburguesa hacia el extremo derecho */
+        }
+
+        .nav__menu-barra {
+            width: 100%;
+            height: 4px;
+            background-color: #333;
+            /* Color de las barras */
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        /* Rotación de las barras para transformar la hamburguesa en una "X" al abrir el menú */
+        .nav__menu.abierto .barra1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .nav__menu.abierto .barra2 {
+            opacity: 0;
+        }
+
+        .nav__menu.abierto .barra3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Estilo para el menú desplegable */
+        .nav__menu-desplegable {
+            display: none;
+            position: absolute;
+            top: 50px;
+            /* Ajusta la posición del menú desplegable */
+            left: 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            padding: 10px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav__menu-desplegable li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .nav__menu-desplegable a {
+            color: #333;
+            text-decoration: none;
+            font-size: 2rem;
+            font-family: fuentePagina;
+        }
+
+        .nav__menu-desplegable a:hover {
+            color: #F36A5F;
+        }
+
+        /* Media query para dispositivos móviles */
+        @media only screen and (max-width: 768px) {
+            .nav__lista {
+                display: none;
+                /* Oculta la lista principal en dispositivos móviles */
+            }
+
+            .nav__menu-desplegable {
+                display: block;
+                z-index: 1;
+                margin-top: 2rem;
+                text-align: center;
+                /* Muestra el menú desplegable en dispositivos móviles */
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -36,7 +114,14 @@
                             </a>
                         </li>
                     </ul>
-                    <img class="nav__menu" src="{{ asset('assets/menu.png') }}" alt="menu">
+                    <img class="nav__menu" src="{{ asset('assets/menu.png') }}" alt="menu" onclick="toggleMenu()">
+                    <!-- Menú desplegable para dispositivos móviles -->
+                    <ul class="nav__menu-desplegable" id="menuDesplegable">
+                        <li><a href="#caracteristicas">Características</a></li>
+                        <li><a href="#funciona">Cómo funciona</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                    </ul>
                 </div>
             </nav>
             <!-- HEADER -->
@@ -223,6 +308,30 @@
     </footer>
 
     <script src="{{ asset('js/script.js') }}"></script>
+    <script>
+        // Función para mostrar u ocultar el menú desplegable al hacer clic en el icono de hamburguesa
+        function toggleMenu() {
+        var menuDesplegable = document.getElementById("menuDesplegable");
+        if (menuDesplegable.style.display === "block") {
+        menuDesplegable.style.display = "none";
+        } else {
+        menuDesplegable.style.display = "block";
+        }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+        var menuDesplegable = document.getElementById("menuDesplegable");
+        menuDesplegable.style.display = "none";
+        });
+
+        document.addEventListener('click', function(event) {
+        var menuDesplegable = document.getElementById("menuDesplegable");
+        var menuIcono = document.querySelector('.nav__menu');
+        if (!menuDesplegable.contains(event.target) && event.target !== menuIcono) {
+        menuDesplegable.style.display = "none";
+        }
+        });
+    </script>
 </body>
 
 </html>
