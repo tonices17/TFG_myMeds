@@ -88,8 +88,9 @@ class TratamientoController extends Controller
         });
 
         $pdf = app()->make('dompdf.wrapper');
-        $pdf->loadView('tratamientos.pdf', compact('tratamientos'));
+        // $pdf->loadView('tratamientos.pdf', compact('tratamientos'));
 
-        return $pdf->download('tratamientos.pdf');
+        return $pdf->loadView('tratamientos.pdf', compact('tratamientos'))
+            ->stream('archivo.pdf');
     }
 }
