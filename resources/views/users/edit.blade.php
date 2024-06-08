@@ -119,49 +119,23 @@
                                         <div class="row d-print-none mt-2">
                                             <div class="col-12 text-right">
                                                 <a class="btn btn-danger" href="{{route('home')}}">
-                                                    <i class="fa fa-fw fa-lg fa-arrow-left"></i>
-                                                    Regresar
+                                                    <i class="fa fa-fw fa-lg fa-arrow-left"></i> Regresar
                                                 </a>
                                                 <button class="btn btn-success" type="submit">
-                                                    <i class="fa fa-fw fa-lg fa-check-circle"></i>Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                    data-target="#eliminarUsuario">
-                                                    {{ __('Eliminar Usuario') }}
+                                                    <i class="fa fa-fw fa-lg fa-check-circle"></i> Editar
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
-
+                                    <form action="{{ route('users.destroy', $user->id) }}" id="delete_form"
+                                        method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="btn btn-danger" value="Eliminar Usuario"
+                                            onclick="return confirmDelete()">
+                                    </form>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="eliminarUsuario" tabindex="-1" role="dialog"
-                aria-labelledby="eliminarUsuarioLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="eliminarUsuarioLabel">{{ __('Confirmar Eliminación') }}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            {{ __('¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede
-                            deshacer.') }}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar')
-                                }}</button>
-                            <form method="POST" action="#">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">{{ __('Eliminar') }}</button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -193,11 +167,10 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
-    <!-- Datatable -->
     <script>
-        $(document).ready(function() {
-            $('#user_table').DataTable();
-        });
+        function confirmDelete() {
+            return confirm('¿Está seguro que desea eliminar el registro?');
+        }
     </script>
 </body>
 

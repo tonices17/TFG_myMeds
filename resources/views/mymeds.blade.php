@@ -267,16 +267,16 @@
         </div>
         <div class="footer__opciones flex--row">
             <div class="footer__columna-1 flex--column">
-                <p class="footer__opcion">Inicio</p>
-                <p class="footer__opcion">Contacta con nosotros</p>
+                <a href="#" class="footer__opcion" style="text-decoration: none">Inicio</a>
+                <a href="#" class="footer__opcion" style="text-decoration: none">Contacta con nosotros</a>
             </div>
             <div class="footer__columna-2 flex--column">
-                <p class="footer__opcion">Como funciona</p>
-                <p class="footer__opcion">Política de privacidad</p>
+                <a href="#funciona" class="footer__opcion" style="text-decoration: none">Como funciona</a>
+                <a href="#" class="footer__opcion" style="text-decoration: none">Política de privacidad</a>
             </div>
             <div class="footer__columna-3 flex--column">
-                <p class="footer__opcion">Términos de uso</p>
-                <p class="footer__opcion">Cookies</p>
+                <a href="#" class="footer__opcion" style="text-decoration: none">Términos de uso</a>
+                <a href="#" class="footer__opcion" style="text-decoration: none">Cookies</a>
             </div>
         </div>
         <div class="footer__redes flex--column">

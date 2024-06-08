@@ -48,7 +48,12 @@ class UserController extends Controller
     {
         //
         $user->delete();
+        $userLogeado = auth()->user();
 
-        return back()->with('success', 'Usuario borrado exitosamente');
+        if ($userLogeado) {
+            return redirect()->route('users.index')->with('success', 'Usuario borrado exitosamente');
+        } else {
+            return redirect()->route('mymeds');
+        }
     }
 }
