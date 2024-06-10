@@ -54,18 +54,14 @@
                 </li>
                 <li>
                     <hr style="border-color: #fff;">
-                    <a href="#" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
-                        class="nav-link active" style="background-color: #F36A5C;">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <p>
-                            Cerrar sesión
-                        </p>
-                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="nav-link active" style="background-color: #F36A5C; border:none;">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <p>Cerrar sesión</p>
+                        </button>
+                    </form>
                 </li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
