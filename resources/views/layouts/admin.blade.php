@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="legend">
                                         <div class="legend-color normal"></div>
-                                        <span>Tratamientos preventivos</span>
+                                        <span>Tratamientos Temporales</span>
                                     </div>
                                 </div>
                                 <!-- Calendar -->
