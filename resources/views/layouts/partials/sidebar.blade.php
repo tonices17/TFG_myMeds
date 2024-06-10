@@ -1,4 +1,5 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4 {{ Auth::user()->hasRole('admin') ? '' : 'background-verde' }}">
+<aside
+    class="main-sidebar sidebar-dark-primary elevation-4 {{ Auth::user()->hasRole('admin') ? '' : 'background-verde' }}">
     <!-- Brand Logo -->
     <a class="nav__logo" style="text-decoration: none; padding: 10px; margin: 0 auto;" href="{{ route('mymeds') }}">
         <img src="{{ asset('assets/logo.png') }}" alt="pastilla-logo" style="width: 60px; padding-top:5px;">
@@ -53,7 +54,7 @@
                 </li>
                 <li>
                     <hr style="border-color: #fff;">
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a href="#" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                         class="nav-link active" style="background-color: #F36A5C;">
                         <i class="fas fa-sign-out-alt"></i>
